@@ -8,7 +8,7 @@ const { getEvent, findTokenFromDB } = require('./utils/db')
 const platform = require('./utils/platform');
 
 // Import Handlers
-// const { invitationHandler } = require('./handlers/invitationHandler');
+const { invitationHandler } = require('./handlers/invitationHandler');
 // const { fomoHandler } = require('./handlers/fomoReminderHandler');
 // const { reminderHandler } = require('./handlers/reminderHandler');
 // const { checkinHandler } = require('./handlers/checkinHandler');
@@ -23,10 +23,16 @@ app.use(bp.urlencoded({
     extended: true
 }));
 
+app.get('/', async (req, res) => {
+    res.json({ 'message': 'Succes' }).status(200)
+
+})
+
 app.get('/test', async (req, res) => {
     let event = await getEvent(req.query.event_id)
     let event_type = req.query.event_type
     let result = await findTokenFromDB(req.query.bot_id)
+    console.log('REslt', result);
     let token = result.rows[0]
     let bot_id = req.query.bot_id
 
