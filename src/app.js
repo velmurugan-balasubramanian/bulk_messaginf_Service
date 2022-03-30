@@ -17,7 +17,6 @@ const platform = require('./utils/platform');
 // const reminderRoute = require('./routes/reminder');
 
 
-// app.use(express.json());
 app.use(morgan('dev'))
 app.use(bp.json());
 app.use(bp.urlencoded({
