@@ -4,17 +4,17 @@ const morgan = require('morgan')
 const app = express();
 const PORT = process.env.PORT || 3000
 var bp = require('body-parser')
-const { getEvent, findTokenFromSubscriptionId } = require('./utils/db')
+const { getEvent, findTokenFromDB } = require('./utils/db')
 const platform = require('./utils/platform');
 
 // Import Handlers
-const { invitationHandler } = require('./handlers/invitationHandler');
-const { fomoHandler } = require('./handlers/fomoReminderHandler');
-const { reminderHandler } = require('./handlers/reminderHandler');
-const { checkinHandler } = require('./handlers/checkinHandler');
+// const { invitationHandler } = require('./handlers/invitationHandler');
+// const { fomoHandler } = require('./handlers/fomoReminderHandler');
+// const { reminderHandler } = require('./handlers/reminderHandler');
+// const { checkinHandler } = require('./handlers/checkinHandler');
 
 // Routes
-const reminderRoute = require('./routes/reminder');
+// const reminderRoute = require('./routes/reminder');
 
 
 // app.use(express.json());
