@@ -11,12 +11,11 @@ const platform = require('./utils/platform');
 const { invitationHandler } = require('./handlers/invitationHandler');
 const { fomoHandler } = require('./handlers/fomoReminderHandler');
 const { reminderHandler } = require('./handlers/reminderHandler');
-
+const { checkinHandler } = require('./handlers/checkinHandler');
 
 // Routes
 const reminderRoute = require('./routes/reminder');
 
-const { sendMessage } = require('./utils/sendMessage')
 
 // app.use(express.json());
 app.use(morgan('dev'))
@@ -28,7 +27,7 @@ app.use(bp.urlencoded({
 app.get('/test', async (req, res) => {
     let event = await getEvent(req.query.event_id)
     let event_type = req.query.event_type
-    let result = await findTokenFromSubscriptionId(req.query.bot_id)
+    let result = await findTokenFromDB(req.query.bot_id)
     let token = result.rows[0]
     let bot_id = req.query.bot_id
 
@@ -38,12 +37,15 @@ app.get('/test', async (req, res) => {
     }
     if (req.query.schedule_type === 'fomo_reminder') {
         await fomoHandler(token, event, bot_id)
-    }   
+    }
     if (req.query.schedule_type === 'reminder') {
         await reminderHandler(token, event.attendees, bot_id)
     }
 
-
+    if (req.query.schedule_type === 'checkin') {
+        console.log('Checkin');
+        await checkinHandler(token, event_type, event, bot_id)
+    }
 
     res.json({ 'message': 'Succes' }).status(200)
 })
