@@ -21,18 +21,20 @@ router.get('/schedule', async (req, res) => {
         let bot_id = req.query.bot_id
 
         if (req.query.schedule_type === 'invitation') {
-
+            console.info(`Handling invitation schedule`);
             await invitationHandler(token, event_type, event, bot_id)
         }
         if (req.query.schedule_type === 'fomo_reminder') {
+            console.info(`Handling fomo_reminder schedule`);
             await fomoHandler(token, event, bot_id)
         }
         if (req.query.schedule_type === 'reminder') {
+            console.info(`Handling reminder schedule`);
             await reminderHandler(token, event.attendees, bot_id)
         }
 
         if (req.query.schedule_type === 'checkin') {
-            console.log('Checkin');
+            console.info(`Handling Checkin schedule`);
             await checkinHandler(token, event_type, event, bot_id)
         }
         res.json({ 'message': 'Succes' }).status(200)
