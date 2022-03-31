@@ -8,9 +8,9 @@ const { getEvent, findTokenFromDB } = require('./utils/db')
 
 // Import Handlers
 const { invitationHandler } = require('./handlers/invitationHandler');
-// const { fomoHandler } = require('./handlers/fomoReminderHandler');
-// const { reminderHandler } = require('./handlers/reminderHandler');
-// const { checkinHandler } = require('./handlers/checkinHandler');
+const { fomoHandler } = require('./handlers/fomoReminderHandler');
+const { reminderHandler } = require('./handlers/reminderHandler');
+const { checkinHandler } = require('./handlers/checkinHandler');
 
 // Routes
 // const reminderRoute = require('./routes/reminder');
