@@ -2,8 +2,8 @@
 const { sendMessage } = require('../utils/sendMessage');
 const { createConversation } = require('../utils/createConversation')
 
-const reminderHandler = async (token, attendees, bot_id) => {
-    attendees.forEach(async (member) => {
+const reminderHandler = async (token, event_name, attending, bot_id) => {
+    attending.forEach(async (member) => {
         let conversation = await createConversation(token,
             {
                 members: [
@@ -16,7 +16,7 @@ const reminderHandler = async (token, attendees, bot_id) => {
                 ]
             }
         )
-        await sendMessage(token, "Bulk message here", conversation.id)
+        await sendMessage(token, `The ${event_name} is starting Soon`, conversation.id)
     });
 }
 

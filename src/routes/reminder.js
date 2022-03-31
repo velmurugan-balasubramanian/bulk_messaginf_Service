@@ -30,7 +30,7 @@ router.get('/schedule', async (req, res) => {
         }
         if (req.query.schedule_type === 'reminder') {
             console.info(`Handling reminder schedule`);
-            await reminderHandler(token, event.attendees, bot_id)
+            await reminderHandler(token, event.event_name, event.attending, bot_id)
         }
 
         if (req.query.schedule_type === 'checkin') {
@@ -39,7 +39,7 @@ router.get('/schedule', async (req, res) => {
         }
         res.json({ 'message': 'Succes' }).status(200)
     } catch (error) {
-        console.error('Unable to handle Schedules');
+        console.error('Unable to handle Scheduler');
         console.error(error);
         res.json({ 'message': 'Succes' }).status(500)
 
