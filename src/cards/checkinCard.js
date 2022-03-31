@@ -1,4 +1,4 @@
-const sendInvitationCard = (bot_id, event_type, event) => {
+const checkinCard = (bot_id, event_type, event) => {
 
     let eventImages = {
         'sports': 'https://img.icons8.com/stickers/452/sport.png',
@@ -36,7 +36,7 @@ const sendInvitationCard = (bot_id, event_type, event) => {
             {
                 "type": "Input.Text",
                 "id": "action",
-                "value": "invitation",
+                "value": "checkin",
                 "isVisible": false,
             },
             {
@@ -62,7 +62,7 @@ const sendInvitationCard = (bot_id, event_type, event) => {
                                 "size": "large",
                                 "color": "dark",
                                 "weight": "Bolder",
-                                "text": `Invitation to ${event.event_name}`,
+                                "text": `You have been invited to ${event.event_name} event`,
                                 "wrap": true
                             }
                         ],
@@ -71,77 +71,32 @@ const sendInvitationCard = (bot_id, event_type, event) => {
                 ]
             },
             {
-                "type": "Input.Text",
-                "id": "event_text",
-                "value": `Invitation to ${event.event_name}`,
-                "isVisible": false,
-            },
-            {
                 "type": "TextBlock",
                 "size": "Medium",
                 "weight": "Bolder",
-                "text": `You have been invited to ${event.event_name} on ${new Date(event.event_date).toLocaleDateString()} , between ${event.event_start_time} and ${event.event_end_time}`,
-                "wrap": true
-            },
-            {
-                "type": "TextBlock",
-                "size": "Medium",
-                "text": `Please disclose your vaccination status and record your RSVP to the event by filling out the below details`,
-                "wrap": true
-            },
-            {
-                "type": "TextBlock",
-                "text": "RSVP",
+                "text": `The ${event.event_name} is starting now, check-in to let your team mates know you are in! `,
                 "wrap": true
             },
             {
                 "type": "Input.ChoiceSet",
-                "id": "rsvp",
+                "id": "attendance",
                 "value": "yes",
                 "choices": [
                     {
-                        "title": "Yes",
+                        "title": "I'm already in the venue",
                         "value": "yes"
                     },
                     {
-                        "title": "No",
+                        "title": "Sorry, Couldn't attend",
                         "value": "no"
                     },
-                    {
-                        "title": "Maybe",
-                        "value": "maybe"
-                    }
-                ]
-            },
-            {
-                "type": "TextBlock",
-                "text": "Are you Vaccinated",
-                "wrap": true
-            },
-            {
-                "type": "Input.ChoiceSet",
-                "id": "vaccination",
-                "value": "yes",
-                "choices": [
-                    {
-                        "title": "Yes",
-                        "value": "yes"
-                    },
-                    {
-                        "title": "No",
-                        "value": "no"
-                    },
-                    {
-                        "title": "Do not want to disclose",
-                        "value": "dwts"
-                    }
                 ]
             }
         ],
         "actions": [
             {
                 "type": "Action.Submit",
-                "title": "RSVP to the Event"
+                "title": "Checkin to the Event"
             }
         ]
 
@@ -155,4 +110,4 @@ const sendInvitationCard = (bot_id, event_type, event) => {
 
 
 
-module.exports = sendInvitationCard;
+module.exports = checkinCard;

@@ -5,7 +5,6 @@ const app = express();
 const PORT = process.env.PORT || 3000
 var bp = require('body-parser')
 const { getEvent, findTokenFromDB } = require('./utils/db')
-const platform = require('./utils/platform');
 
 // Import Handlers
 const { invitationHandler } = require('./handlers/invitationHandler');
@@ -30,6 +29,7 @@ app.get('/', async (req, res) => {
 
 app.get('/test', async (req, res) => {
     let event = await getEvent(req.query.event_id)
+    console.log('event', event);
     let event_type = req.query.event_type
     let result = await findTokenFromDB(req.query.bot_id)
     console.log('REslt', result);
