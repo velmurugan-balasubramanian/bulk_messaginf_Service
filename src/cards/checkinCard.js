@@ -62,7 +62,7 @@ const checkinCard = (bot_id, event_type, event) => {
                                 "size": "large",
                                 "color": "dark",
                                 "weight": "Bolder",
-                                "text": `You have been invited to ${event.event_name} event`,
+                                "text": `Invitation to ${event.event_name}`,
                                 "wrap": true
                             }
                         ],
